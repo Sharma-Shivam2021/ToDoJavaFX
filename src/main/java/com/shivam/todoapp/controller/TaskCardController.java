@@ -2,7 +2,6 @@ package com.shivam.todoapp.controller;
 
 import com.shivam.todoapp.dto.TaskDTO;
 import com.shivam.todoapp.managers.TaskList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -26,7 +25,7 @@ public class TaskCardController {
 
     private TodoController todoController;
 
-    public void handleViewTask(ActionEvent actionEvent) {
+    public void handleViewTask() {
         showTaskViewDialog();
     }
 

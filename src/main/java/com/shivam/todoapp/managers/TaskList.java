@@ -84,7 +84,7 @@ public class TaskList implements Serializable {
     private void saveTasks() {
         try (
                 FileOutputStream fos = new FileOutputStream(filePath);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
             oos.writeObject(tasks);
 
@@ -98,7 +98,7 @@ public class TaskList implements Serializable {
         if (file.exists()) {
             try (
                     FileInputStream fileOutputStream = new FileInputStream(file);
-                    ObjectInputStream ois = new ObjectInputStream(fileOutputStream);
+                    ObjectInputStream ois = new ObjectInputStream(fileOutputStream)
             ) {
                 //noinspection unchecked
                 tasks = (List<TaskDTO>) ois.readObject();

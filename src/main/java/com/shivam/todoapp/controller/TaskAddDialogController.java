@@ -1,7 +1,6 @@
 package com.shivam.todoapp.controller;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
@@ -15,11 +14,11 @@ public class TaskAddDialogController {
         this.mainController = mainController;
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
+    public void handleCancel() {
         closeDialog();
     }
 
-    public void handleSubmit(ActionEvent actionEvent) {
+    public void handleSubmit() {
         String title = taskTitleField.getText();
         String description = taskDescriptionField.getText();
         if (!title.isEmpty()) {

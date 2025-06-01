@@ -4,7 +4,6 @@ import com.shivam.todoapp.dto.TaskDTO;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -29,9 +28,7 @@ public class TaskViewDialogController {
         statusComboBox.getItems().clear();
         statusComboBox.getItems().addAll("ToDo", "InProgress", "Done");
         // makes sure that correct status is loaded after the ui is built
-        Platform.runLater(() -> {
-            statusComboBox.setValue(task.getStatus());
-        });
+        Platform.runLater(() -> statusComboBox.setValue(task.getStatus()));
 
         task.getComments().forEach(this::displayComment);
 
@@ -44,7 +41,7 @@ public class TaskViewDialogController {
     }
 
 
-    public void handleAddComment(ActionEvent actionEvent) {
+    public void handleAddComment() {
         String comment = commentField.getText();
         if (!comment.isEmpty()) {
             task.addComment(comment);
@@ -53,11 +50,11 @@ public class TaskViewDialogController {
         }
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
+    public void handleCancel() {
         closeDialog();
     }
 
-    public void handleUpdate(ActionEvent actionEvent) {
+    public void handleUpdate() {
         task.setTitle(taskTitleField.getText());
         task.setDescription(taskDescriptionField.getText());
         task.setStatus(statusComboBox.getValue());
@@ -71,7 +68,7 @@ public class TaskViewDialogController {
     }
 
 
-    public void handleDelete(ActionEvent actionEvent) {
+    public void handleDelete() {
         taskCardController.deleteTask(task);
         closeDialog();
     }

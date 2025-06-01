@@ -3,9 +3,6 @@ package com.shivam.todoapp.controller;
 import com.shivam.todoapp.dto.TaskDTO;
 import com.shivam.todoapp.managers.TaskList;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -32,12 +29,7 @@ public class TodoController {
         statusComboBox.getItems().addAll("All", "ToDo", "InProgress", "Done");
         statusComboBox.setValue("All");
         statusComboBox.valueProperty().addListener(
-                new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                        filterTaskByStatus(newValue);
-                    }
-                }
+                (observable, oldValue, newValue) -> filterTaskByStatus(newValue)
         );
         redrawTaskList();
     }
@@ -62,13 +54,13 @@ public class TodoController {
 
     }
 
-    public void handleAddTask(ActionEvent actionEvent) {
+    public void handleAddTask() {
         showAddTaskDialog();
     }
 
 
     public void addTaskFromDialog(String title, String description) {
-        addTask(title, description, LocalDateTime.now(), "ToDo");
+        addTask(title, description, LocalDateTime.now());
     }
 
     public void redrawTaskList() {
@@ -99,8 +91,8 @@ public class TodoController {
         }
     }
 
-    private void addTask(String title, String description, LocalDateTime dateAdded, String status) {
-        TaskDTO newTask = new TaskDTO(title, description, dateAdded, status);
+    private void addTask(String title, String description, LocalDateTime dateAdded) {
+        TaskDTO newTask = new TaskDTO(title, description, dateAdded, "ToDo");
         taskList.addTask(newTask);
         redrawTaskList();
     }
